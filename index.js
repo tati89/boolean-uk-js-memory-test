@@ -14,16 +14,30 @@ function randomNumbers() {
 function readyToPlay() {
   alert("Ready? Press enter and type the first number in 15 seconds");
 }
-
+const answerNumbers = [];
 function userPromptNumbers() {
-  answerNumbers = [];
   for (let i = 1; i <= 4; i++) {
     number = Number(prompt(`Please enter ${i} number:`));
+    console.log(number);
     answerNumbers.push(number);
   }
-  return answerNumbers;
+  console.log(answerNumbers);
+  checkGuesses();
 }
 
-randomNumbers();
+function checkGuesses() {
+  let counter = 0;
+  for (let i = 0; i < computerNumbers.length; i++) {
+    const number = computerNumbers[i];
+    const guess = answerNumbers[i];
+    if (guess === number) {
+      counter += 1;
+    }
+  }
+  alert(`You guessed ${counter} right`);
+}
+
+computerNumbers = randomNumbers();
+console.log(computerNumbers);
 setTimeout(readyToPlay, 2000);
 setTimeout(userPromptNumbers, 15000);
